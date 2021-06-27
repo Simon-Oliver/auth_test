@@ -15,11 +15,13 @@ export const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
-const app = firebase.app();
-const auth = firebase.auth();
-const db = firebase.firestore();
-const now = firebase.firestore.Timestamp.now();
-const storage = firebase.storage();
-export { auth, db, now, storage };
-console.log(app.name ? 'Firebase Mode Activated!' : 'Firebase not working :(');
-console.log(firebaseConfig)
+// const app = firebase.app();
+// const auth = firebase.auth();
+// const db = firebase.firestore();
+// const now = firebase.firestore.Timestamp.now();
+// const storage = firebase.storage();
+// export { auth, db, now, storage };
+
+export default firebase;
+// console.log(app.name ? 'Firebase Mode Activated!' : 'Firebase not working :(');
+// console.log(firebaseConfig)

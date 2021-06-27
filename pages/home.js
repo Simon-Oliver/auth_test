@@ -1,15 +1,31 @@
-import { auth } from './config/firebase';
 import React from 'react'
 import Link from "next/link"
+import { useAuth } from './context/authContext'
+import { useRouter } from 'next/router';
+
+
 
 
 export default function Home() {
+    const { createUserWithEmailAndPassword, signInWithEmailAndPassword } = useAuth();
+    const router = useRouter()
 
     const signUp = ({ email, password }) => {
-        return auth
-            .createUserWithEmailAndPassword(email, password)
+        return createUserWithEmailAndPassword(email, password)
             .then((response) => {
                 console.log(response)
+                router.push("/loggedin")
+            })
+            .catch((error) => {
+                return { error };
+            });
+    };
+
+    const signIn = ({ email, password }) => {
+        return signInWithEmailAndPassword(email, password)
+            .then((response) => {
+                console.log(response)
+                router.push("/loggedin")
             })
             .catch((error) => {
                 return { error };
@@ -20,6 +36,14 @@ export default function Home() {
         e.preventDefault();
         const data = { email: e.target.name.value, password: e.target.password.value }
         return signUp(data).then((user) => {
+            console.log(user);
+        });
+    };
+
+    const onSubmitSign = (e) => {
+        e.preventDefault();
+        const data = { email: e.target.name.value, password: e.target.password.value }
+        return signIn(data).then((user) => {
             console.log(user);
         });
     };
@@ -35,6 +59,18 @@ export default function Home() {
             <h1>Home Page</h1>
             <Link href="/secure">Got to Secure Page</Link>
             <form onSubmit={onSubmit}>
+                <label>
+                    Username:
+                    <input type="text" name="name" />
+                </label>
+                <label>
+                    Password:
+                    <input type="text" name="password" />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
+            <h2>Sign In</h2>
+            <form onSubmit={onSubmitSign}>
                 <label>
                     Username:
                     <input type="text" name="name" />
