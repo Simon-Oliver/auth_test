@@ -20,10 +20,19 @@ const LoggedIn = () => {
     }, [authUser, loading])
 
     const loggAPI = async () => {
-        console.log(authUser.uid)
-        const doc = await firebase.firestore().collection('users').doc(`${authUser.uid}`).get()
-        const data = { id: doc.id, ...doc.data() }
-        console.log(req.query.id)
+        try {
+            firebase.auth().currentUser.getIdToken().then(token => console.log('got token', token))
+            const doc = await firebase.firestore().collection('users').doc(`${authUser.uid}`).get()
+            const data = { id: doc.id, ...doc.data() }
+            console.log(data)
+        } catch (error) {
+            console.log(error.code, error.message)
+        }
+
+        // console.log(authUser.uid)
+        // const doc = await firebase.firestore().collection('users').doc(`${authUser.uid}`).get()
+        // const data = { id: doc.id, ...doc.data() }
+        // console.log(req.query.id)
         // const res = await fetch(`api/postData?id=${encodeURIComponent(authUser.uid)}`)
         // const data = await res.json()
     }
