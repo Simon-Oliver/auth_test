@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from './context/authContext'
 import firebase from './config/firebase'
@@ -7,13 +7,13 @@ import firebase from './config/firebase'
 const LoggedIn = () => {
     const router = useRouter();
     const { authUser, loading, signOut } = useAuth();
+    const [userData, setUserData] = useState({ data: {}, error: {} });
 
 
     // Listen for changes on loading and authUser, redirect if needed
     useEffect(() => {
         if (!loading && !authUser) {
             console.log(authUser, loading)
-            useAuth().getInstance().getCurrentUser();
             router.push('/home')
         }
 
@@ -24,9 +24,10 @@ const LoggedIn = () => {
             firebase.auth().currentUser.getIdToken().then(token => console.log('got token', token))
             const doc = await firebase.firestore().collection('users').doc(`${authUser.uid}`).get()
             const data = { id: doc.id, ...doc.data() }
-            console.log(data)
+            setUserData({ ...userData, data }).then(console.log(userData))
         } catch (error) {
-            console.log(error.code, error.message)
+            setUserData({ ...userData, error: [error.code, error.message] })
+            console.log(userData)
         }
 
         // console.log(authUser.uid)
@@ -43,6 +44,8 @@ const LoggedIn = () => {
             <h1>Logged in</h1>
             <button onClick={loggAPI}>Logg api call</button>
             <button onClick={signOut}>Sign Out</button>
+
+            <p>{userData.data ? userData.data.data : ""}</p>
         </>
     )
 }
