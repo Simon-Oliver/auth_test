@@ -34,6 +34,7 @@ export default function useFirebaseAuth() {
     const createUserWithEmailAndPassword = (email, password) =>
         firebase.auth().createUserWithEmailAndPassword(email, password);
 
+
     const signOut = () =>
         firebase.auth().signOut().then(clear);
 

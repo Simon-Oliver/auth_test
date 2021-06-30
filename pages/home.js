@@ -2,7 +2,7 @@ import React from 'react'
 import Link from "next/link"
 import { useAuth } from './context/authContext'
 import { useRouter } from 'next/router';
-
+import Login from "../components/Login"
 
 
 
@@ -57,6 +57,7 @@ export default function Home() {
     return (
         <div>
             <h1>Home Page</h1>
+            <Login></Login>
             <Link href="/secure">Got to Secure Page</Link>
             <form onSubmit={onSubmit}>
                 <label>
