@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)https://cdpn.io/larimaza/fullembedgrid/BaaPbmL?animations=run&type=embed -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+<link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+
+
+  <title>CodePen - Elements replacing native outline focus with transform scale</title>
+  
+  
+  
+  
+<style>
+html {
+  --blue: #159ce4;
+  --lgt-blue: #3db5eb;
+  --drk-blue: #147ec1;
+  --gray: #f6f7f8;
+  --drk-gray: #e9eef2;
+  --black: #32383c;
+}
+
+a {
+  display: inline-block;
+  color: var(--blue);
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--lgt-blue);
+}
+
+a:focus {
+  outline: none;
+  transform: scale(1.08);
+}
+
+a:active {
+  color: var(--drk-blue);
+}
+
+button {
+  display: block;
+  padding: 10px 38px;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  color: var(--blue);
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+i {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  -webkit-mask-image: url(https://astro.magnetis.com.br/static/img/balloon.72762fd2.svg);
+  mask-image: url(https://astro.magnetis.com.br/static/img/balloon.72762fd2.svg);
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  margin: -4px 9px -3px 0;
+  font-size: 32px;
+  background-color: var(--blue);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  color: var(--lgt-blue);
+  background-color: var(--gray);
+  border-color: var(--gray);
+}
+
+button:hover i {
+  background-color: var(--lgt-blue);
+}
+
+button:active {
+  color: var(--drk-blue);
+  background-color: var(--drk-gray);
+  border-color: var(--drk-gray);
+}
+
+button:active i {
+  background-color: var(--drk-blue);
+}
+
+button:focus {
+  outline: none;
+  transform: scale(1.08);
+}
+
+form {
+  width: 100%;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  color: var(--black);
+  width: 100%;
+}
+
+input[type="text"] {
+  padding: 10px 16px;
+  font-size: 16px;
+  color: var(--black);
+  background-color: #fff;
+  border: 1px solid #597183;
+  border-radius: 8px;
+  margin-top: 5px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  transform: scale(1.04);
+}
+
+/* For Demo */
+
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 2rem;
+  display: grid;
+  grid-gap: 2rem;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  font: 16px/1.4 system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+  var consoleWarn = window.console.warn;
+  function warn(){ consoleWarn.apply(console, arguments); }
+  window.open = function(){ warn("window.open is disabled."); };
+  window.print   = function(){ warn("window.print is disabled."); };
+  window.alert   = function(){ warn("window.alert is disabled."); };
+  window.confirm = function(){ warn("window.confirm is disabled."); };
+  window.prompt  = function(){ warn("window.prompt is disabled."); };
+  window.Notification = function() { warn("HTML5 notifications are disabled."); };
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" data-new-gr-c-s-check-loaded="14.1018.0" data-gr-ext-installed="">
+  <p>This is a paragraph of text <a href="https://cdpn.io/larimaza/fullembedgrid/BaaPbmL?animations=run&amp;type=embed#0">that has a link</a> inside of it.</p>
+
+<button>
+  <i></i>
+  Click me
+</button>
+
+<form>
+  <label>
+    Name
+    <input type="text">
+  </label>
+</form>
+  
+  
+  
+  
+
+  <script src="./iframeRefreshCSS-4793b73c6332f7f14a9b6bba5d5e62748e9d1bd0b5c52d7af6376f3d1c625d7e.js"></script>
+
+
+
+ 
+</body></html>
