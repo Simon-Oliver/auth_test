@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Login.module.css'
 import Link from "next/link"
 import { useAuth } from '../../pages/context/authContext'
@@ -6,10 +6,11 @@ import { useRouter } from 'next/router';
 import firebase from "../../pages/config/firebase";
 
 export default function Login() {
-    const { createUserWithEmailAndPassword, signInWithEmailAndPassword } = useAuth();
+    const { authUser, loading, createUserWithEmailAndPassword, signInWithEmailAndPassword } = useAuth();
     const router = useRouter()
 
     var provider = new firebase.auth.GoogleAuthProvider();
+
 
     const googleAuth = () => {
         firebase.auth()
@@ -84,16 +85,16 @@ export default function Login() {
             <p>Log in to continue to the Dashboard.</p>
             <form onSubmit={onSubmitSign}>
                 <div>
-                    <label className={`${styles.label} `} for="email">Email</label>
+                    <label className={`${styles.label} `} htmlFor="email">Email</label>
                     <input className={`${styles.input} `} type="email" name="email" id="email"></input>
                 </div>
                 <div>
-                    <label className={`${styles.label} `} for="password">Password</label>
+                    <label className={`${styles.label} `} htmlFor="password">Password</label>
                     <input className={`${styles.input} `} type="password" name="password" id="password"></input>
                 </div>
                 <input className={`${styles.button} ${styles.submit}`} type="submit" value="Continue" />
             </form>
-            <p>Don’t have an account? <a href="#">Signup</a></p>
+            <p className={styles.copy}>Don’t have an account? <a className={styles.purple} href="#">Signup</a></p>
             <div className={styles.divider}>OR</div>
             <button onClick={googleAuth} className={`${styles.button} `}><img className={styles.logo} src="img/Google__G__Logo.svg" />Continue with Google</button>
         </div>

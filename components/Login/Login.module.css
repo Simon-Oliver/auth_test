@@ -13,6 +13,8 @@
 .box > p {
   color: #2d333a;
   font-size: 0.9rem;
+  margin-top: 0px;
+  margin-bottom: 25px;
 }
 
 .button {
@@ -33,6 +35,7 @@
   align-items: center;
   transition-duration: 0.2s;
   justify-content: center;
+  margin-bottom: 25px;
 }
 
 .button:hover {
@@ -44,6 +47,7 @@
   background-color: #635dff;
   border: 1px solid #635dff;
   transition-duration: 0.2s;
+  margin-top: 25px;
 }
 
 .submit:hover {
@@ -62,8 +66,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  margin-bottom: 25px;
 }
 .divider::before,
 .divider::after {
@@ -102,8 +105,7 @@
   font-size: 1rem;
   cursor: pointer;
   transition-duration: 0.2s;
-  margin-bottom: 10px;
-  margin-top: 5px;
+  margin-bottom: 9.5px;
 }
 
 .input:hover,
@@ -114,4 +116,8 @@
 .input:active,
 .input:focus {
   outline-color: #635dff;
+}
+
+.purple {
+  color: #635dff;
 }

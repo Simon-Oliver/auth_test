@@ -13,19 +13,31 @@ const LoggedIn = () => {
     // Listen for changes on loading and authUser, redirect if needed
     useEffect(() => {
         if (!loading && !authUser) {
+            console.log("Loggedin Page")
             console.log(authUser, loading)
             router.push('/home')
         }
 
     }, [authUser, loading])
 
+    useEffect(() => {
+        console.log(userData)
+
+    }, [userData])
+
+    if (loading || !authUser) {
+        return "";
+    }
+
     const loggAPI = async () => {
         try {
             firebase.auth().currentUser.getIdToken().then(token => console.log('got token', token))
             const doc = await firebase.firestore().collection('users').doc(`${authUser.uid}`).get()
             const data = { id: doc.id, ...doc.data() }
-            setUserData({ ...userData, data }).then(console.log(userData))
+            console.log(data)
+            setUserData({ ...userData, data })
         } catch (error) {
+            console.log(error)
             setUserData({ ...userData, error: [error.code, error.message] })
             console.log(userData)
         }

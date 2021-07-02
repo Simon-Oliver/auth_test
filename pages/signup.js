@@ -2,9 +2,7 @@ import React, { useEffect } from 'react'
 import Link from "next/link"
 import { useAuth } from './context/authContext'
 import { useRouter } from 'next/router';
-import Login from "../components/Login";
-import styles from '../styles/home.module.css'
-
+import Login from "../components/Login"
 
 
 
@@ -20,8 +18,8 @@ export default function Home() {
 
     }, [authUser, loading])
 
-    if (loading || authUser) {
-        return ""
+    if (loading) {
+        return <h1>Loading</h1>
     }
     const signUp = ({ email, password }) => {
         return createUserWithEmailAndPassword(email, password)
@@ -68,8 +66,33 @@ export default function Home() {
     }
 
     return (
-        <div className={styles.body}>
+        <div>
+            <h1>Home Page</h1>
             <Login></Login>
+            <Link href="/secure">Got to Secure Page</Link>
+            <form onSubmit={onSubmit}>
+                <label>
+                    Username:
+                    <input type="text" name="name" />
+                </label>
+                <label>
+                    Password:
+                    <input type="text" name="password" />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
+            <h2>Sign In</h2>
+            <form onSubmit={onSubmitSign}>
+                <label>
+                    Username:
+                    <input type="text" name="name" />
+                </label>
+                <label>
+                    Password:
+                    <input type="text" name="password" />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
         </div>
     )
 }
