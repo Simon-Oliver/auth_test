@@ -1,0 +1,36 @@
+.button {
+  display: flex;
+  width: 264px;
+  height: 50px;
+  border: 1px solid #c2c8d0;
+  border-radius: 4px;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: none;
+  color: black;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  align-items: center;
+  transition-duration: 0.2s;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.button:hover {
+  border: 1px solid #635dff;
+}
+
+.submit {
+  color: white;
+  background-color: #635dff;
+  border: 1px solid #635dff;
+  transition-duration: 0.2s;
+  margin-top: 25px;
+}
+
+.submit:hover {
+  border: 1px solid #adabf8;
+}
