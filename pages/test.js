@@ -3,13 +3,22 @@ import InputField from "../components/Input"
 import SubmitForm from "../components/SubmitForm"
 
 export default function test() {
-    const [inputValue, setInputValue] = useState({ name: "", price: "" });
-    const { name, price } = inputValue;
-
+    const [inputValue, setInputValue] = useState({ email: "", password: "", password1: "" });
+    const { email, password, password1 } = inputValue;
+    const [isNotMatch, setIsNotMatch] = useState(false)
 
     useEffect(() => {
-        console.log(inputValue)
+        if (password === password1) {
+            setIsNotMatch(false)
+        } else {
+            setIsNotMatch(true)
+        }
+
     }, [inputValue])
+
+    useEffect(() => {
+        console.log("////////////", isNotMatch)
+    }, [isNotMatch])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -19,31 +28,43 @@ export default function test() {
         }));
     };
 
-    const handleClick = () => {
-        console.log("-------->", inputValue)
-        setInputValue({ name: "", price: "" })
+    const handleClick = (e) => {
+        e.preventDefault();
+        if (password == password1) {
+            console.log("Pasword Matches")
+            setInputValue({ email: "", password: "", password1: "" })
+        }
     }
 
     return (
-        <div>
+        <form onSubmit={handleClick}>
             <InputField
                 type="text"
-                value={name}
-                label="Name"
-                name="name"
+                value={email}
+                label="Email"
+                name="email"
                 onChange={handleChange} />
 
             <InputField
-                type="number"
-                value={price}
-                label="Price"
-                name="price"
+                type="password"
+                value={password}
+                label="Password"
+                name="password"
                 onChange={handleChange}
             />
+            <InputField
+                type="password"
+                value={password1}
+                label="Confirm Password"
+                name="password1"
+                onChange={handleChange}
+                isNotMatch={isNotMatch}
+            />
             <SubmitForm
-                clickHandler={handleClick}
                 css="submit"
+                value="Continue"
+                disabled={isNotMatch}
             >Continue</SubmitForm>
-        </div>
+        </form>
     )
 }

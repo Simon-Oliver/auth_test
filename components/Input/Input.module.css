@@ -31,3 +31,25 @@
 .input:focus {
   outline-color: #635dff;
 }
+
+.errorFont {
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: #ff0033;
+}
+
+.errorLabel {
+  position: absolute;
+  margin: 0px;
+  margin-top: -9.5px;
+}
+
+.error:hover,
+.error:focus {
+  border: 1px solid #ff0033;
+}
+
+.error:active,
+.error:focus {
+  outline-color: #ff0033;
+}
