@@ -5,20 +5,20 @@ import SubmitForm from "../components/SubmitForm"
 export default function test() {
     const [inputValue, setInputValue] = useState({ email: "", password: "", password1: "" });
     const { email, password, password1 } = inputValue;
-    const [isNotMatch, setIsNotMatch] = useState(false)
+    const [isErrorPW, setIsErrorPW] = useState({ error: "" })
 
     useEffect(() => {
         if (password === password1) {
-            setIsNotMatch(false)
+            setIsErrorPW({ error: "" })
         } else {
-            setIsNotMatch(true)
+            setIsErrorPW({ error: "Password not matching" })
         }
 
     }, [inputValue])
 
     useEffect(() => {
-        console.log("////////////", isNotMatch)
-    }, [isNotMatch])
+        console.log("////////////", isErrorPW)
+    }, [isErrorPW])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -58,12 +58,12 @@ export default function test() {
                 label="Confirm Password"
                 name="password1"
                 onChange={handleChange}
-                isNotMatch={isNotMatch}
+                isError={isErrorPW}
             />
             <SubmitForm
                 css="submit"
                 value="Continue"
-                disabled={isNotMatch}
+                disabled={isErrorPW}
             >Continue</SubmitForm>
         </form>
     )
