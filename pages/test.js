@@ -39,10 +39,11 @@ export default function test() {
     return (
         <form onSubmit={handleClick}>
             <InputField
-                type="text"
+                type="email"
                 value={email}
                 label="Email"
                 name="email"
+                required
                 onChange={handleChange} />
 
             <InputField
@@ -50,6 +51,7 @@ export default function test() {
                 value={password}
                 label="Password"
                 name="password"
+                required
                 onChange={handleChange}
             />
             <InputField
@@ -57,6 +59,7 @@ export default function test() {
                 value={password1}
                 label="Confirm Password"
                 name="password1"
+                required
                 onChange={handleChange}
                 isError={isErrorPW}
             />
