@@ -94,7 +94,7 @@ export default function Login() {
                 </div>
                 <input className={`${styles.button} ${styles.submit}`} type="submit" value="Continue" />
             </form>
-            <p className={styles.copy}>Don’t have an account? <a className={styles.purple} href="#">Signup</a></p>
+            <p className={styles.copy}>Don’t have an account? <a className={styles.purple} href="/signup">Signup</a></p>
             <div className={styles.divider}>OR</div>
             <button onClick={googleAuth} className={`${styles.button} `}><img className={styles.logo} src="img/Google__G__Logo.svg" />Continue with Google</button>
         </div>

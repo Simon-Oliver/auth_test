@@ -4,3 +4,22 @@
   align-items: center;
   justify-content: center;
 }
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: auto;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 20px;
+}
+
+.box > p {
+  color: #2d333a;
+  font-size: 0.9rem;
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
