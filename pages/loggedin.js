@@ -32,6 +32,7 @@ const LoggedIn = () => {
     const loggAPI = async () => {
         try {
             firebase.auth().currentUser.getIdToken().then(token => console.log('got token', token))
+            const res = await firebase.firestore().collection('users').doc(`${authUser.uid}`).set({ someData: "123151afajk" }, { merge: true });
             const doc = await firebase.firestore().collection('users').doc(`${authUser.uid}`).get()
             const data = { id: doc.id, ...doc.data() }
             console.log(data)
