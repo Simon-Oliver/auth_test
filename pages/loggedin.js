@@ -34,9 +34,13 @@ const LoggedIn = () => {
             firebase.auth().currentUser.getIdToken().then(token => console.log('got token', token))
             const res = await firebase.firestore().collection('users').doc(`${authUser.uid}`).set({ someData: "123151afajk" }, { merge: true });
             const doc = await firebase.firestore().collection('users').doc(`${authUser.uid}`).get()
+            const resBox = await firebase.firestore().collection('box').doc(`${authUser.uid}`).set({ boxId: "123151afajk", content: ["Box1", "Box2", "Box3"] }, { merge: true });
+            const box = await firebase.firestore().collection('box').doc(`${authUser.uid}`).get()
+
             const data = { id: doc.id, ...doc.data() }
             console.log(data)
-            setUserData({ ...userData, data })
+            console.log(box.data())
+            setUserData({ ...userData, data, boxes: box.data() })
         } catch (error) {
             console.log(error)
             setUserData({ ...userData, error: [error.code, error.message] })
@@ -59,6 +63,7 @@ const LoggedIn = () => {
             <button onClick={signOut}>Sign Out</button>
 
             <p>{userData.data ? userData.data.data : ""}</p>
+            {userData.boxes.content.map(e => <p>{e}</p>)}
         </>
     )
 }
