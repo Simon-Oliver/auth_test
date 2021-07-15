@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from './context/authContext'
 import firebase from './config/firebase'
+import InputField from "../components/Input"
+import SubmitForm from "../components/SubmitForm"
 
 
 const LoggedIn = () => {
@@ -68,6 +70,15 @@ const LoggedIn = () => {
         // console.log(e.target.id);
     }
 
+    const onChangeHandler = (e) => {
+        console.log(e.target.id);
+        const arr = userData.boxes.filter(b => b.boxId !== e.target.id)
+        const data = userData.boxes.filter(b => b.boxId === e.target.id)
+        const newData = { ...data, boxId: e.target.value }
+
+        setUserData({ boxes: [...arr, newData] })
+    }
+
     return (
         //Your logged in page
         <>
@@ -77,7 +88,10 @@ const LoggedIn = () => {
 
             <p>{userData.data ? userData.data.data : ""}</p>
             {console.log(userData.boxes)}
-            {userData.boxes.map(e => <p id={e.boxId}>{e.boxId}<button id={e.boxId} onClick={onDeleteClick}>delete</button></p>)}
+            {userData.boxes.map(e => <div>
+                <InputField id={e.boxId} value={e.boxId} onChange={onChangeHandler}></InputField>
+                <button id={e.boxId} onClick={onDeleteClick}>delete</button>
+            </div>)}
         </>
     )
 }

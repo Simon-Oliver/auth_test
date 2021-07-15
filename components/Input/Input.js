@@ -1,11 +1,12 @@
 import React from 'react'
 import styles from './Input.module.css'
 
-const InputField = ({ value, label, name, placeholder, type, onChange, isError = {} }) => {
+const InputField = ({ value, id, label, name, placeholder, type, onChange, isError = {} }) => {
 
     return (<div className="form-group">
         {label && <label className={`${styles.label} ${isError.hasOwnProperty("error") && isError.error ? styles.errorFont : ""}`} htmlFor="input-field">{label}</label>}
         <input
+            id={id}
             className={`${styles.input} ${isError.hasOwnProperty("error") && isError.error ? styles.error : ""}`}
             type={type}
             value={value}
