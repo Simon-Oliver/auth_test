@@ -17,15 +17,20 @@ const LoggedIn = () => {
             console.log("Loggedin Page")
             console.log(authUser, loading)
             router.push('/home')
-        }
+        } else if (!loading && authUser) { getData() }
 
     }, [authUser, loading])
 
+    const getData = async () => {
+        const doc = await firebase.firestore().collection('users').doc(`${authUser.uid}`).get()
+        const box = await firebase.firestore().collection('boxes').doc(`${authUser.uid}`).get()
+        const data = { id: doc.id, ...doc.data() }
+        setUserData({ ...userData, data, boxes: box.data().boxes })
+    }
+
     useEffect(() => {
-        console.log(userData)
-
+        console.log(userData);
     }, [userData])
-
 
 
     if (loading || !authUser) {
@@ -72,11 +77,28 @@ const LoggedIn = () => {
 
     const onChangeHandler = (e) => {
         console.log(e.target.id);
-        const arr = userData.boxes.filter(b => b.boxId !== e.target.id)
+        const arr = userData.boxes
         const data = userData.boxes.filter(b => b.boxId === e.target.id)
+        const index = userData.boxes.map(function (e) { return e.boxId; }).indexOf(data[0].boxId)
         const newData = { ...data, boxId: e.target.value }
+        arr[index] = newData
 
-        setUserData({ boxes: [...arr, newData] })
+        console.log(index);
+
+        setUserData({ ...userData, boxes: [...arr] })
+    }
+
+    const addBox = () => {
+        const arr = userData.boxes
+        arr.push({ boxId: "", content: ["Box1", "Box2", "Box3"] })
+        setUserData({ ...userData, boxes: [...arr] })
+    }
+
+
+    const postBox = async () => {
+        const resBox = await firebase.firestore().collection('boxes').doc(`${authUser.uid}`).set({ boxes: [...userData.boxes] }, { merge: true });
+        const box = await firebase.firestore().collection('boxes').doc(`${authUser.uid}`).get()
+        setUserData({ ...userData, boxes: box.data().boxes })
     }
 
     return (
@@ -92,6 +114,8 @@ const LoggedIn = () => {
                 <InputField id={e.boxId} value={e.boxId} onChange={onChangeHandler}></InputField>
                 <button id={e.boxId} onClick={onDeleteClick}>delete</button>
             </div>)}
+            <button onClick={addBox}>Add Field</button>
+            <button onClick={postBox}>Save</button>
         </>
     )
 }
