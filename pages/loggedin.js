@@ -42,7 +42,7 @@ const LoggedIn = () => {
             firebase.auth().currentUser.getIdToken().then(token => console.log('got token', token))
             const res = await firebase.firestore().collection('users').doc(`${authUser.uid}`).set({ someData: "123151afajk" }, { merge: true });
             const doc = await firebase.firestore().collection('users').doc(`${authUser.uid}`).get()
-            const resBox = await firebase.firestore().collection('boxes').doc(`${authUser.uid}`).set({ boxes: [{ boxId: "123151afajk", content: ["Content1", "Content2", "Content3"] }, { boxId: "afajk", content: ["Content1", "Content2", "Content3"] }] }, { merge: true });
+            const resBox = await firebase.firestore().collection('boxes').doc(`${authUser.uid}`).set({ boxes: [{ boxId: "123151afajk", name: "Title 1", content: ["Content1", "Content2", "Content3"] }, { boxId: "afajk", name: "Title 2", content: ["Content1", "Content2", "Content3"] }] }, { merge: true });
             const box = await firebase.firestore().collection('boxes').doc(`${authUser.uid}`).get()
 
             const data = { id: doc.id, ...doc.data() }
@@ -68,11 +68,6 @@ const LoggedIn = () => {
         const newArr = userData.boxes.filter(box => box.boxId !== e.target.id)
         console.log(newArr);
         setUserData({ ...userData, boxes: newArr })
-        // const resBox = await firebase.firestore().collection('box').doc(`${authUser.uid}`).set({ boxId: "123151afajk", content: ["Box1", "Box2", "Box3"] }, { merge: true });
-        // const box = await firebase.firestore().collection('box').doc(`${authUser.uid}`).get()
-        // setUserData({ ...userData, data, boxes: box.data() })
-
-        // console.log(e.target.id);
     }
 
     const onChangeHandler = (e) => {
@@ -80,17 +75,15 @@ const LoggedIn = () => {
         const arr = userData.boxes
         const data = userData.boxes.filter(b => b.boxId === e.target.id)
         const index = userData.boxes.map(function (e) { return e.boxId; }).indexOf(data[0].boxId)
-        const newData = { ...data, boxId: e.target.value }
-        arr[index] = newData
-
-        console.log(index);
+        const newData = { ...data[0], name: e.target.value }
+        arr[index] = { ...newData }
 
         setUserData({ ...userData, boxes: [...arr] })
     }
 
     const addBox = () => {
         const arr = userData.boxes
-        arr.push({ boxId: "", content: ["Box1", "Box2", "Box3"] })
+        arr.push({ boxId: "9839487hfh", name: "", content: ["Box1", "Box2", "Box3"] })
         setUserData({ ...userData, boxes: [...arr] })
     }
 
@@ -98,7 +91,7 @@ const LoggedIn = () => {
     const postBox = async () => {
         const resBox = await firebase.firestore().collection('boxes').doc(`${authUser.uid}`).set({ boxes: [...userData.boxes] }, { merge: true });
         const box = await firebase.firestore().collection('boxes').doc(`${authUser.uid}`).get()
-        setUserData({ ...userData, boxes: box.data().boxes })
+        setUserData({ ...userData, boxes: [...box.data().boxes] })
     }
 
     return (
@@ -110,8 +103,8 @@ const LoggedIn = () => {
 
             <p>{userData.data ? userData.data.data : ""}</p>
             {console.log(userData.boxes)}
-            {userData.boxes.map(e => <div>
-                <InputField id={e.boxId} value={e.boxId} onChange={onChangeHandler}></InputField>
+            {userData.boxes.map(e => <div key={e.boxId}>
+                <InputField id={e.boxId} value={e.name} onChange={onChangeHandler}></InputField>
                 <button id={e.boxId} onClick={onDeleteClick}>delete</button>
             </div>)}
             <button onClick={addBox}>Add Field</button>
