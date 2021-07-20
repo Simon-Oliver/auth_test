@@ -23,3 +23,15 @@
   margin-top: 0px;
   margin-bottom: 25px;
 }
+
+.container {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  height: 100vh;
+}
+
+.menu {
+  background-color: #2d333a;
+  color: white;
+  padding: 10px;
+}

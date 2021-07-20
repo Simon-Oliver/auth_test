@@ -19,13 +19,13 @@ export default async (req, res) => {
     const observer = snap.onSnapshot(docSnapshot => {
         docSnapshot.docChanges().forEach(change => {
             if (change.type === 'added') {
-                console.log('New city: ', change.doc.data());
+                console.log('New: ', change.doc.data());
             }
             if (change.type === 'modified') {
-                console.log('Modified city: ', change.doc.data());
+                console.log('Modified: ', change.doc.data());
             }
             if (change.type === 'removed') {
-                console.log('Removed city: ', change.doc.data());
+                console.log('Removed: ', change.doc.data());
             }
         });
 

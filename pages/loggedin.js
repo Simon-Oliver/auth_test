@@ -4,6 +4,7 @@ import { useAuth } from './context/authContext'
 import firebase from './config/firebase'
 import InputField from "../components/Input"
 import SubmitForm from "../components/SubmitForm"
+import styles from "../styles/home.module.css"
 
 
 const LoggedIn = () => {
@@ -96,20 +97,26 @@ const LoggedIn = () => {
 
     return (
         //Your logged in page
-        <>
-            <h1>Logged in</h1>
-            <button onClick={loggAPI}>Logg api call</button>
-            <button onClick={signOut}>Sign Out</button>
+        <div className={styles.container}>
+            <div className={styles.menu}>
+                <p>Menu</p>
+            </div>
+            <div>
+                <h1>Logged in</h1>
+                <button onClick={loggAPI}>Logg api call</button>
+                <button onClick={signOut}>Sign Out</button>
 
-            <p>{userData.data ? userData.data.data : ""}</p>
-            {console.log(userData.boxes)}
-            {userData.boxes.map(e => <div key={e.boxId}>
-                <InputField id={e.boxId} value={e.name} onChange={onChangeHandler}></InputField>
-                <button id={e.boxId} onClick={onDeleteClick}>delete</button>
-            </div>)}
-            <button onClick={addBox}>Add Field</button>
-            <button onClick={postBox}>Save</button>
-        </>
+                <p>{userData.data ? userData.data.data : ""}</p>
+                {console.log(userData.boxes)}
+                {userData.boxes.map(e => <div key={e.boxId}>
+                    <InputField id={e.boxId} value={e.name} onChange={onChangeHandler}></InputField>
+                    <button id={e.boxId} onClick={onDeleteClick}>delete</button>
+                </div>)}
+                <button onClick={addBox}>Add Field</button>
+                <button onClick={postBox}>Save</button>
+            </div>
+
+        </div>
     )
 }
 
