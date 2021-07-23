@@ -31,7 +31,13 @@
 }
 
 .menu {
+  display: flex;
+  justify-content: center;
   background-color: #2d333a;
   color: white;
   padding: 10px;
+}
+
+.content {
+  padding: 26px;
 }

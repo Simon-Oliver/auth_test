@@ -101,8 +101,7 @@ const LoggedIn = () => {
             <div className={styles.menu}>
                 <p>Menu</p>
             </div>
-            <div>
-                <h1>Logged in</h1>
+            <div className={styles.content}>
                 <button onClick={loggAPI}>Logg api call</button>
                 <button onClick={signOut}>Sign Out</button>
 
