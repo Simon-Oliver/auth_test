@@ -103,7 +103,7 @@ const LoggedIn = () => {
             </div>
             <div className={styles.content}>
                 <button onClick={loggAPI}>Logg api call</button>
-                <button onClick={signOut}>Sign Out</button>
+                <button className={styles.btn} onClick={signOut}>Sign Out</button>
 
                 <p>{userData.data ? userData.data.data : ""}</p>
                 {console.log(userData.boxes)}

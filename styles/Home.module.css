@@ -39,5 +39,7 @@
 }
 
 .content {
+  flex-direction: column;
+  display: flex;
   padding: 26px;
 }
