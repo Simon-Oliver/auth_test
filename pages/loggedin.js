@@ -102,17 +102,24 @@ const LoggedIn = () => {
                 <p>Menu</p>
             </div>
             <div className={styles.content}>
-                <button onClick={loggAPI}>Logg api call</button>
-                <button className={styles.btn} onClick={signOut}>Sign Out</button>
+                <div className={styles.card}>
+                    <div>
+                        <button onClick={loggAPI}>Logg api call</button>
+                        <button className={styles.btn} onClick={signOut}>Sign Out</button>
+                    </div>
 
-                <p>{userData.data ? userData.data.data : ""}</p>
-                {console.log(userData.boxes)}
-                {userData.boxes.map(e => <div key={e.boxId}>
-                    <InputField id={e.boxId} value={e.name} onChange={onChangeHandler}></InputField>
-                    <button id={e.boxId} onClick={onDeleteClick}>delete</button>
-                </div>)}
-                <button onClick={addBox}>Add Field</button>
-                <button onClick={postBox}>Save</button>
+                    <p>{userData.data ? userData.data.data : ""}</p>
+                    {console.log(userData.boxes)}
+                    {userData.boxes.map(e => <div key={e.boxId}>
+                        <InputField id={e.boxId} value={e.name} onChange={onChangeHandler}></InputField>
+                        <button id={e.boxId} onClick={onDeleteClick}>delete</button>
+                    </div>)}
+                    <div>
+                        <button onClick={addBox}>Add Field</button>
+                        <button onClick={postBox}>Save</button>
+                    </div>
+
+                </div>
             </div>
 
         </div>

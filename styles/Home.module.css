@@ -33,7 +33,7 @@
 .menu {
   display: flex;
   justify-content: center;
-  background-color: #2d333a;
+  background-color: #333333;
   color: white;
   padding: 10px;
 }
@@ -42,4 +42,10 @@
   flex-direction: column;
   display: flex;
   padding: 26px;
+}
+
+.card {
+  width: 400px;
+  padding: 50px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
