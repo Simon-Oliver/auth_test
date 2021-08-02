@@ -100,12 +100,12 @@ const LoggedIn = () => {
         <div className={styles.container}>
             <div className={styles.menu}>
                 <p>Menu</p>
+                <button className={styles.btn} onClick={signOut}>Sign Out</button>
             </div>
             <div className={styles.content}>
                 <div className={styles.card}>
                     <div>
                         <button onClick={loggAPI}>Logg api call</button>
-                        <button className={styles.btn} onClick={signOut}>Sign Out</button>
                     </div>
 
                     <p>{userData.data ? userData.data.data : ""}</p>
