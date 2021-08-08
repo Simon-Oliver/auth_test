@@ -5,6 +5,8 @@ import firebase from './config/firebase'
 import InputField from "../components/Input"
 import SubmitForm from "../components/SubmitForm"
 import styles from "../styles/home.module.css"
+import QRCode from 'qrcode.react'
+
 
 
 const LoggedIn = () => {
@@ -112,6 +114,7 @@ const LoggedIn = () => {
                     {console.log(userData.boxes)}
                     {userData.boxes.map(e => <div key={e.boxId}>
                         <InputField id={e.boxId} value={e.name} onChange={onChangeHandler}></InputField>
+                        <QRCode value={e.boxId} />
                         <button id={e.boxId} onClick={onDeleteClick}>delete</button>
                     </div>)}
                     <div>
