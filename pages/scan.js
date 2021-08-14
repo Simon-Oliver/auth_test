@@ -44,8 +44,9 @@ export default function scan() {
 
     const handleScan = data => {
         if (data) {
-            console.log(userData.boxes.filter(box => box.id === data));
-            setScanData(data)
+            console.log('----->>>', userData.boxes);
+            const filtered = userData.boxes.filter(box => box.boxId === data)
+            setScanData(filtered)
             setShow(false)
         }
     }
@@ -55,13 +56,24 @@ export default function scan() {
         setShow(true)
     }
 
+    const renderScanData = (data) => {
+        return data.map(e => {
+            const list = e.content.map(i => <li key={i}>{i}</li>)
+            return (
+                <>
+                    <h3>{e.name}</h3>
+                    <ul>{list}</ul>
+                </>
+            )
+        })
+    }
 
     return (
         <div>
             <h1>Scan</h1>
             {show ? <QrReader className={styles.scanner} onScan={handleScan} onError={() => console.log('error')} /> :
                 <>
-                    <p>{scanData}</p>
+                    {renderScanData(scanData)}
                     <button onClick={scan}>Scan</button>
                 </>}
         </div>
