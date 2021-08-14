@@ -44,6 +44,7 @@ export default function scan() {
 
     const handleScan = data => {
         if (data) {
+            console.log(userData.boxes.filter(box => box.id === data));
             setScanData(data)
             setShow(false)
         }
