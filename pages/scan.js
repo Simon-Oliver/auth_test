@@ -8,14 +8,13 @@ import styles from "../styles/home.module.css"
 
 const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false })
 
-
-
 export default function scan() {
     const router = useRouter();
     const { authUser, loading, signOut } = useAuth();
     const [userData, setUserData] = useState({ data: {}, error: {}, boxes: [] });
     const [show, setShow] = useState(true)
     const [scanData, setScanData] = useState({})
+    const [error, setError] = useState({})
 
     useEffect(() => {
         if (!loading && !authUser) {
@@ -46,13 +45,22 @@ export default function scan() {
         if (data) {
             console.log('----->>>', userData.boxes);
             const filtered = userData.boxes.filter(box => box.boxId === data)
-            setScanData(filtered)
-            setShow(false)
+            if (filtered.length == 0) {
+                setScanData({})
+                setShow(true)
+                setError({ message: "Box ID not found." })
+                console.log("Box ID not found.");
+            } else {
+                setScanData(filtered)
+                setShow(false)
+            }
+
         }
     }
 
     const scan = () => {
         setScanData({})
+        setError({})
         setShow(true)
     }
 
@@ -68,14 +76,26 @@ export default function scan() {
         })
     }
 
+    const renderScanner = () => {
+        return (
+            <div className={styles.scannerBox}>
+                <img src="img/frame.svg" className={styles.scannerOverlay} />
+                <QrReader className={styles.scanner} onScan={handleScan} onError={() => console.log('error')} />
+
+            </div>
+
+        )
+    }
+
     return (
         <div>
             <h1>Scan</h1>
-            {show ? <QrReader className={styles.scanner} onScan={handleScan} onError={() => console.log('error')} /> :
+            {show ? renderScanner() :
                 <>
                     {renderScanData(scanData)}
                     <button onClick={scan}>Scan</button>
                 </>}
+            {error ? <p>{error.message}</p> : ""}
         </div>
     )
 }
