@@ -52,32 +52,40 @@
   border-radius: 8px;
 }
 
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
 /* For Mobile Phones */
 @media (max-width: 1025px) {
   .scannerBox {
-    width: 300px;
+    width: 100vw;
     position: relative;
   }
   .scanner {
-    width: 300px;
+    width: 100vw;
     position: absolute;
     top: 0;
     left: 0;
   }
 
   .scanner section {
-    border-radius: 12px;
+    /* border-radius: 12px; */
     z-index: -1;
   }
 
   .scanner section div {
     box-shadow: unset !important;
-    border: unset !important;
-    border-radius: 10px !important;
+    border: 150px solid rgba(0, 0, 0, 0.6) !important;
+    /* border-radius: 10px !important; */
   }
 
   .scannerOverlay {
-    padding: 15px;
+    padding: 145px;
     z-index: 9;
   }
 }
@@ -85,11 +93,11 @@
 /* For Laptops/Desktop */
 @media (min-width: 1025px) {
   .scannerBox {
-    width: 600px;
+    width: 400px;
     position: relative;
   }
   .scanner {
-    width: 600px;
+    width: 400px;
     position: absolute;
     top: 0;
     left: 0;
@@ -107,7 +115,7 @@
   }
 
   .scannerOverlay {
-    padding: 15px;
+    padding: 12px;
     z-index: 9;
   }
 }

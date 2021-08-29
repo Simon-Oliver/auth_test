@@ -52,6 +52,7 @@ export default function scan() {
                 console.log("Box ID not found.");
             } else {
                 setScanData(filtered)
+                setError({})
                 setShow(false)
             }
 
@@ -88,7 +89,7 @@ export default function scan() {
     }
 
     return (
-        <div>
+        <div className={styles.wrapper}>
             <h1>Scan</h1>
             {show ? renderScanner() :
                 <>
