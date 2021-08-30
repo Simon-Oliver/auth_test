@@ -6,6 +6,7 @@ import InputField from "../components/Input"
 import SubmitForm from "../components/SubmitForm"
 import styles from "../styles/home.module.css"
 import QRCode from 'qrcode.react'
+import Card from '../components/Card';
 
 
 
@@ -13,6 +14,7 @@ const LoggedIn = () => {
     const router = useRouter();
     const { authUser, loading, signOut } = useAuth();
     const [userData, setUserData] = useState({ data: {}, error: {}, boxes: [] });
+    const item = { title: "Test", content: "Test1, Test3" }
 
     // Listen for changes on loading and authUser, redirect if needed
     useEffect(() => {
@@ -100,11 +102,14 @@ const LoggedIn = () => {
     return (
         //Your logged in page
         <div className={styles.container}>
+
+
             <div className={styles.menu}>
                 <p>Menu</p>
                 <button className={styles.btn} onClick={signOut}>Sign Out</button>
             </div>
             <div className={styles.content}>
+                <Card {...item}></Card>
                 <div className={styles.card}>
                     <div>
                         <button onClick={loggAPI}>Logg api call</button>
@@ -125,7 +130,7 @@ const LoggedIn = () => {
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }
 
