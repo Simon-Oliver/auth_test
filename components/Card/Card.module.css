@@ -1,14 +1,20 @@
 .card {
-  width: 400px;
-  padding: 30px;
+  width: auto;
+  padding: 8px 30px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 8px;
-  transition: 0.9s;
 }
 
 .panel {
-  padding: 0 18px;
   background-color: white;
-  display: none;
+  max-height: 0;
   overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  margin: 0px;
+}
+
+.show {
+  max-height: 300px;
+  padding-bottom: 20px;
+  transition: max-height 0.2s ease-in;
 }

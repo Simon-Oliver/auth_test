@@ -109,7 +109,6 @@ const LoggedIn = () => {
                 <button className={styles.btn} onClick={signOut}>Sign Out</button>
             </div>
             <div className={styles.content}>
-                <Card {...item}></Card>
                 <div className={styles.card}>
                     <div>
                         <button onClick={loggAPI}>Logg api call</button>
@@ -121,6 +120,7 @@ const LoggedIn = () => {
                         <InputField id={e.boxId} value={e.name} onChange={onChangeHandler}></InputField>
                         <QRCode value={e.boxId} />
                         <button id={e.boxId} onClick={onDeleteClick}>delete</button>
+                        <Card {...item}><QRCode value={e.boxId} /></Card>
                     </div>)}
                     <div>
                         <button onClick={addBox}>Add Field</button>

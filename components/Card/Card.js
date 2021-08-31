@@ -13,7 +13,10 @@ export default function Card(props) {
 
         <div className={styles.card} onClick={toggle}>
             <h3>{props.title}</h3>
-            {isShowing && <p className={styles.panel} style={isShowing ? { display: "block" } : ""}>  {props.content}</p>}
+            <div className={isShowing ? `${styles.panel} ${styles.show}` : styles.panel}>
+                <p> {props.content}</p>
+                {props.children}
+            </div>
         </div >
     )
 }
