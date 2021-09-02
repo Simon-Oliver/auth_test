@@ -120,7 +120,7 @@ const LoggedIn = () => {
                         <InputField id={e.boxId} value={e.name} onChange={onChangeHandler}></InputField>
                         <QRCode value={e.boxId} />
                         <button id={e.boxId} onClick={onDeleteClick}>delete</button>
-                        <Card {...item}><QRCode value={e.boxId} /></Card>
+                        <Card {...{ title: e.name, content: e.content }}><QRCode value={e.boxId} /></Card>
                     </div>)}
                     <div>
                         <button onClick={addBox}>Add Field</button>
