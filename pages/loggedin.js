@@ -7,7 +7,7 @@ import SubmitForm from "../components/SubmitForm"
 import styles from "../styles/home.module.css"
 import QRCode from 'qrcode.react'
 import Card from '../components/Card';
-
+import Modal from '../components/Modal';
 
 
 const LoggedIn = () => {
@@ -110,6 +110,7 @@ const LoggedIn = () => {
             </div>
             <div className={styles.content}>
                 <div className={styles.card}>
+                    <Modal></Modal>
                     <div>
                         <button onClick={loggAPI}>Logg api call</button>
                     </div>
@@ -118,7 +119,6 @@ const LoggedIn = () => {
                     {console.log(userData.boxes)}
                     {userData.boxes.map(e => <div key={e.boxId}>
                         <InputField id={e.boxId} value={e.name} onChange={onChangeHandler}></InputField>
-                        <QRCode value={e.boxId} />
                         <button id={e.boxId} onClick={onDeleteClick}>delete</button>
                         <Card {...{ title: e.name, content: e.content }}><QRCode value={e.boxId} /></Card>
                     </div>)}
