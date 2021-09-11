@@ -14,6 +14,8 @@ const LoggedIn = () => {
     const router = useRouter();
     const { authUser, loading, signOut } = useAuth();
     const [userData, setUserData] = useState({ data: {}, error: {}, boxes: [] });
+    const [showModal, setShowModal] = useState(false)
+    const [data, setData] = useState({})
     const item = { title: "Test", content: "Test1, Test3" }
 
     // Listen for changes on loading and authUser, redirect if needed
@@ -83,7 +85,9 @@ const LoggedIn = () => {
         const newData = { ...data[0], name: e.target.value }
         arr[index] = { ...newData }
 
+
         setUserData({ ...userData, boxes: [...arr] })
+        setData(newData)
     }
 
     const addBox = () => {
@@ -99,38 +103,55 @@ const LoggedIn = () => {
         setUserData({ ...userData, boxes: [...box.data().boxes] })
     }
 
+    const toggleModal = () => {
+        setShowModal(!showModal)
+        console.log(!showModal);
+    }
+
     return (
         //Your logged in page
-        <div className={styles.container}>
-
-
-            <div className={styles.menu}>
-                <p>Menu</p>
-                <button className={styles.btn} onClick={signOut}>Sign Out</button>
-            </div>
-            <div className={styles.content}>
-                <div className={styles.card}>
-                    <Modal></Modal>
-                    <div>
-                        <button onClick={loggAPI}>Logg api call</button>
-                    </div>
-
-                    <p>{userData.data ? userData.data.data : ""}</p>
-                    {console.log(userData.boxes)}
-                    {userData.boxes.map(e => <div key={e.boxId}>
-                        <InputField id={e.boxId} value={e.name} onChange={onChangeHandler}></InputField>
-                        <button id={e.boxId} onClick={onDeleteClick}>delete</button>
-                        <Card {...{ title: e.name, content: e.content }}><QRCode value={e.boxId} /></Card>
-                    </div>)}
-                    <div>
-                        <button onClick={addBox}>Add Field</button>
-                        <button onClick={postBox}>Save</button>
-                    </div>
-
+        <>
+            <Modal toggleModal={toggleModal} show={showModal}>
+                <h3>{data.name}</h3>
+                <InputField id={data.boxId} value={data.name} onChange={onChangeHandler}></InputField>
+            </Modal>
+            <div className={styles.container}>
+                <div className={styles.menu}>
+                    <p>Menu</p>
+                    <button className={styles.btn} onClick={signOut}>Sign Out</button>
                 </div>
-            </div>
+                <div className={styles.content}>
+                    <div className={styles.card}>
 
-        </div >
+                        <div>
+                            <button onClick={loggAPI}>Logg api call</button>
+                        </div>
+
+                        <p>{userData.data ? userData.data.data : ""}</p>
+                        {console.log(userData.boxes)}
+                        {userData.boxes.map(e => <div key={e.boxId}>
+                            <Card {...{ title: e.name, content: e.content }}>
+                                <div onClick={(e) => e.stopPropagation()}>
+                                    <QRCode value={e.boxId} />
+                                    <button onClick={() => {
+                                        toggleModal()
+                                        setData({ ...e })
+                                    }}>Edit</button>
+                                    <button id={e.boxId} onClick={onDeleteClick}>delete</button>
+                                </div>
+
+                            </Card>
+                        </div>)}
+                        <div>
+                            <button onClick={addBox}>Add Field</button>
+                            <button onClick={postBox}>Save</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div >
+        </>
     )
 }
 

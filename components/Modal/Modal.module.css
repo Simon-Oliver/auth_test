@@ -1,5 +1,17 @@
 .modalContainer {
-  min-width: 50px;
-  min-height: 50px;
-  background: red;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalBackground {
+  background: white;
+  border-radius: 8px;
+  min-width: 150px;
+  /* min-height: 150px; */
+  padding: 20px;
 }
