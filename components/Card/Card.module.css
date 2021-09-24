@@ -1,8 +1,9 @@
 .card {
   width: auto;
-  padding: 8px 30px;
+  padding: 10px 30px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 .panel {
@@ -15,6 +16,10 @@
 
 .show {
   max-height: 300px;
-  padding-bottom: 20px;
+  padding: 12px;
   transition: max-height 0.2s ease-in;
+}
+
+.title {
+  margin: 0px;
 }
