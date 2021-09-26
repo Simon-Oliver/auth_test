@@ -8,7 +8,7 @@ import styles from "../styles/home.module.css";
 import QRCode from "qrcode.react";
 import Card from "../components/Card";
 import TestModal from "../components/Modal";
-import { Button, Container } from "semantic-ui-react";
+import { Button, Container, Icon } from "semantic-ui-react";
 
 const LoggedIn = () => {
   const router = useRouter();
@@ -179,9 +179,7 @@ const LoggedIn = () => {
       <div className={styles.container}>
         <div className={styles.menu}>
           <p>Menu</p>
-          <button className={styles.btn} onClick={signOut}>
-            Sign Out
-          </button>
+          <Icon link size="big" name="sign-out" onClick={signOut} />
         </div>
         <div className={styles.content}>
           <div className={styles.card}>
