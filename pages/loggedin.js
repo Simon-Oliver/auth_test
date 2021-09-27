@@ -169,7 +169,6 @@ const LoggedIn = () => {
     //Your logged in page
     <>
       <TestModal toggleModal={toggleModal} show={showModal}>
-        <h3>{data.name}</h3>
         <InputField
           id={data.boxId}
           value={data.name}
